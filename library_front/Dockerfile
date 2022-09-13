@@ -1,5 +1,19 @@
-FROM javascript
+FROM node:alpine
 
-RUN npm install
+#RUN pwd
+WORKDIR /app
 
-RUN npm start
+#COPY package.json /app/
+COPY . .
+
+RUN npm install --verbose
+
+#COPY library_front /app
+
+#USER node
+
+CMD [ "npm", "start" ]
+
+#RUN npm start
+
+EXPOSE 3000

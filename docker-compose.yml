@@ -6,12 +6,23 @@ services:
     env_file:
       - ./library_back/.env
   library_api:
-    build: ./library_back
-    command: ["sh", "init.sh"]
+    build:
+      context: .
+      dockerfile: library_back/Dockerfile
+    command: [ "sh", "init.sh" ]
     ports:
       - "8000:8000"
     env_file:
       - ./library_back/.env
     depends_on:
       - library_db
-      
+  library_front:
+    image: node:lts
+    container_name: front_react
+    build: ./library_front
+    volumes:
+      - ./library_front:/library_front
+    ports:
+      - "3000:3000"
+    depends_on:
+      - library_api
