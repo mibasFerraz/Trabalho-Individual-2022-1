@@ -1,8 +1,13 @@
-FROM python:3
+FROM python:3.8
+
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
-WORKDIR /code
-COPY requirements.txt /code/
-RUN pip install --upgrade pip
+
+COPY library_back /library_back
+WORKDIR /library_back 
+
+#COPY requirements.txt /code/
+
+RUN pip3 install --upgrade pip
 RUN pip install -r requirements.txt
-COPY . /code/
+
