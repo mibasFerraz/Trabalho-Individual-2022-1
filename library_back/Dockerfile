@@ -11,3 +11,4 @@ WORKDIR /library_back
 RUN pip3 install --upgrade pip
 RUN pip install -r requirements.txt
 
+EXPOSE 8000
